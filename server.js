@@ -55,8 +55,14 @@ app.get("/posts/new", (req, res) => {
 
 app.post("/posts/new", (req, res) => {
   const name = req.body.name;
-  const post = req.body.blog_text;
   db.query("INSERT INTO posts (name) values ($1)", [name]).then(() => {
+    res.send("created");
+  });
+});
+
+app.post("/posts/new", (req, res) => {
+  const post = req.body.blog_text;
+  db.query("INSERT INTO posts (post) values ($1)", [post]).then(() => {
     res.send("created");
   });
 });
